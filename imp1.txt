@@ -1,0 +1,36 @@
+After receiving an HTTP request, DispatcherServlet consults the HandlerMapping (configuration files) to call the appropriate Controller. The Controller takes the request and calls the appropriate service methods and set model data and then returns view name to the DispatcherServlet. The DispatcherServlet will take help from ViewResolver to pickup the defined view for the request. Once view is finalized, The DispatcherServlet passes the model data to the view which is finally rendered on the browser.
+
+
+Java based configuration  :
+
+spring configuration file. 
+	DefaultAnnotationHandlerMapping
+     AnnotationMethodHandlerAdapter
+
+Multiple Spring configuration file : Yes
+contextConfigLocation
+
+Difference :
+context:annotation-config = Scanning and activating annotations in “already registered beans
+context:component-scan    =  Bean Registration + Scanning and activating annotations
+
+
+ViewResolver  => interface implimentaion =>InternalResourceViewResolver 
+
+
+MultipartResolver => to upload file in web application. 
+	1. CommonsMultipartResolver 
+	2. StandardServletMultipartResolver 
+	 
+	Add dependecy = >commons-fileupload  , commons-io
+	Add in bean CommonsMultipartResolver
+
+   public String save(@ModelAttribute("uploadForm") FileUploadForm uploadForm, Model map)
+   
+   
+ Interceptor  : to intercept the request  : preHandle(), postHandle() and afterCompletion().
+ 
+ 
+ handle exceptions in Spring MVC  :  impliment HandlerExceptionResolver  or provide beans SimpleMappingExceptionResol
+
+	

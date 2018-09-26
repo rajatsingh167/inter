@@ -1,0 +1,77 @@
+Upgrade Angular 1 to angular 2 ; 
+	1. ngForward  
+	2. ngUpgrade
+	
+	Mapping Angular 1 Concepts to Angular 2: At a high level, ng2 Components are ng1 directives.
+	Another way to prepare your ng1 app is to reduce or eliminate your use of two-way data-binding in favor of a one-way data flow. In-part, you’d do this by reducing $scope changes that pass data between directives and instead use services to pass your data around.
+
+
+From a high level, the five main parts of Angular 1 are:
+
+Directives
+Controllers
+Scopes
+Services
+Dependency Injection
+
+Angular 2 changes
+
+$scope (& two-way binding by default)
+Directive Definition Objects
+Controllers
+angular.module
+
+NgForword :
+	we are not actually upgrading existing Angular 1.x applications—we are creating an environment where these 1.x applications will behave like Angular 2 applications. In other words, we can gradually rewrite our Angular 1.x app to work like an Angular 2 app. We can then further augment new Angular 2 features to this 1.x application on the top of the existing app.
+	
+	1. Open the command line prompt and execute the following command. The command line prompt is opened at the existing Angular 1.x project root directory. When this command is executed, it will install the latest available version of ngForward including the reflect-metadata module.
+	
+		npm i --save ng-forward@latest reflect-metadata.
+	2.Next, open the HTML file in the text editor and be prepared to make the following changes, as shown below:.
+	
+	3. We notice that the config.js file is declared in the head section of the index.html file above. This file is going to be created as shown below.
+	
+	4. 
+	
+
+Migrate Database :
+
+	1. Perform a MySQL Dump  : we first need to back it up on the original virtual server by using the mysqldump command. 
+	
+	2. backup by zip 
+	
+	2. Copy the Database : SCP helps you copy the database. If you used the previous command, you exported your database to your home folder.
+
+		The SCP command has the following syntax:
+
+		scp [database name].sql [username]@[servername]:path/to/database/
+		
+	3. Import the Database
+		mysql -u root -p newdatabase < /path/to/newdatabase.sql
+		
+		
+
+Spring Sequrity :
+
+impliment UserDetails (getpassword , lock) , RedirectStrategy (if any error )  , AbstractUserDetailsAuthenticationProvider  (token authorization) ,extend  AbstractAuthenticationProcessingFilter (retriving token from header) , WebSecurityConfigurerAdapter 
+
+
+Override the AuthenticationFailureHandler to return the code 401 UNAUTHORIZED ; 
+
+Override the AuthenticationSuccessHandler to return the code 20 OK, the body of the HTTP response contain the JSON data of the current authenticated user ;
+
+Override the AuthenticationEntryPoint to always return the code 401 UNAUTHORIZED. This will override the default behavior of Spring Security which is forwarding the user to the login page if he don’t meet the security requirements, because on REST we don’t have any login page ;
+
+Override the LogoutSuccessHandler to return the code 20 OK 
+
+
+Outh2 
+
+Authorization sever  extend AuthorizationServerConfigurerAdapter 
+Resource server  extend ResourceServerConfigurerAdapter 
+
+
+extends  WebSecurityConfigurerAdapter 
+
+DatasourceConfig 
+	
